@@ -1,0 +1,31 @@
+{% extends "pizzas/base.html" %}
+
+{% block content %}
+{% load static %}
+{% static "pizzas/images" as baseUrl %}
+
+<p>Pizza: {{ pizza }}</p>
+
+<ul>
+    {% for t in toppings %}
+    <li>{{ t.topping_name }}</li>
+     
+
+    {% empty %}
+    <li>No toppings for this pizza have been added yet.</li>
+    {% endfor %}
+    
+    {% for p in pizza_comment %}
+    <li>{{p.pizza_comment}}</li>
+    {% endfor %}
+
+</ul>
+
+<p>
+    <a href="{% url 'pizzas:pizza_comment' pizza.id %}">Add a new comment</a>
+    <img src="{{baseUrl}}/{{pizza.pizza_image}}"> 
+</p>
+
+
+
+{% endblock content %}
